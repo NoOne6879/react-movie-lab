@@ -26,7 +26,7 @@ export default function FilterMoviesCard(props) {
     )
       .then((res) => res.json())
       .then((json) => {
-        // console.log(json.genres)
+        console.log(json.genres);
         return json.genres;
       })
       .then((apiGenres) => {
@@ -77,7 +77,15 @@ export default function FilterMoviesCard(props) {
             defaultValue=""
             value={props.genreFilter}
             onChange={handleGenreChange}
-          ></Select>
+          >
+            {genres.map((genre) => {
+              return (
+                <MenuItem key={genre.id} value={genre.id}>
+                  {genre.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
         </FormControl>
       </CardContent>
       <CardMedia sx={{ height: 300 }} image={img} title="Filter" />
